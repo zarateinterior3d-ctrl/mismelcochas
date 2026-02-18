@@ -3,45 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Melcochas - App Oficial</title>
+    <title>Mis Melcochas - Pedidos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root { --naranja: #e67e22; --crema: #fdf5e6; }
-        body { background-color: var(--crema); font-family: sans-serif; }
+        body { background-color: var(--crema); font-family: 'Segoe UI', sans-serif; }
         .logo-color { color: var(--naranja); }
-        .card { background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 450px; margin: auto; padding: 20px; }
-        select { width: 100%; border: 1px solid #ddd; padding: 12px; border-radius: 12px; margin-bottom: 12px; font-size: 16px; background: white; outline: none; }
-        .btn-wa { background-color: #25d366; color: white; text-align: center; display: block; padding: 18px; border-radius: 15px; font-weight: bold; text-decoration: none; font-size: 20px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        .card { background: white; border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); max-width: 450px; margin: auto; padding: 24px; }
+        select { width: 100%; border: 1px solid #e2e8f0; padding: 12px; border-radius: 12px; margin-bottom: 12px; background: white; font-size: 16px; outline: none; }
+        .btn-wa { background-color: #25d366; color: white; text-align: center; display: block; padding: 18px; border-radius: 16px; font-weight: bold; text-decoration: none; font-size: 18px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); transition: 0.3s; }
+        .btn-wa:hover { transform: scale(1.02); background-color: #128c7e; }
     </style>
 </head>
 <body class="p-4 pb-12">
 
     <div class="card">
-        <!-- Logo Oficial Cargado -->
+        <!-- Logo Oficial (Nombre corregido) -->
         <div class="flex justify-center mb-4">
             <img src="Logotipo.png" alt="Mis Melcochas" class="h-32 w-auto object-contain drop-shadow-md">
         </div>
 
-        <div class="text-center mb-6">
-            <p class="text-gray-500 text-[10px] uppercase tracking-[0.2em] font-black">Personaliza tu antojo</p>
-        </div>
+        <p class="text-center text-gray-400 text-[10px] uppercase font-black tracking-[0.2em] mb-6">Personaliza tu antojo</p>
 
         <!-- Imagen Dinámica -->
         <div class="mb-6 rounded-2xl overflow-hidden h-48 bg-gray-100 border-2 border-orange-200">
             <img id="img-producto" src="https://images.unsplash.com" class="w-full h-full object-cover">
         </div>
 
-        <!-- Menú Completo -->
+        <!-- Selección de Tipo y Base -->
         <div class="grid grid-cols-2 gap-3">
             <div>
-                <label class="text-[10px] font-bold uppercase ml-1 text-gray-400">Tipo de Pedido</label>
+                <label class="text-[10px] font-bold uppercase ml-1 text-gray-500">Tipo</label>
                 <select id="tipo" onchange="actualizar()">
                     <option value="5" data-name="Porción">Porción ($5)</option>
                     <option value="20" data-name="Torta" selected>Torta ($20)</option>
                 </select>
             </div>
             <div>
-                <label class="text-[10px] font-bold uppercase ml-1 text-gray-400">Base</label>
+                <label class="text-[10px] font-bold uppercase ml-1 text-gray-500">Base</label>
                 <select id="base" onchange="actualizar()">
                     <option data-name="Bizcocho">Bizcocho</option>
                     <option data-name="Torta">Torta</option>
@@ -49,7 +48,15 @@
             </div>
         </div>
 
-        <label class="text-[10px] font-bold uppercase ml-1 text-gray-400">Relleno Interno (+$2)</label>
+        <!-- Sabor -->
+        <label class="text-[10px] font-bold uppercase ml-1 text-gray-500">Sabor del Bizcocho</label>
+        <select id="sabor" onchange="actualizar()">
+            <option data-name="Vainilla">Vainilla</option>
+            <option data-name="Chocolate">Chocolate</option>
+        </select>
+
+        <!-- Relleno -->
+        <label class="text-[10px] font-bold uppercase ml-1 text-gray-500">Relleno Interno (+$2)</label>
         <select id="relleno" onchange="actualizar()">
             <option value="0" data-name="Ninguno">Sin Relleno</option>
             <option value="2" data-name="Chocolate" selected>Chocolate</option>
@@ -59,7 +66,8 @@
             <option value="2" data-name="Fresa">Fresa</option>
         </select>
 
-        <label class="text-[10px] font-bold uppercase ml-1 text-gray-400">Decoración (+$1)</label>
+        <!-- Decoración -->
+        <label class="text-[10px] font-bold uppercase ml-1 text-gray-500">Decoración (+$1)</label>
         <select id="decoracion" onchange="actualizar()">
             <option value="0" data-name="Básica">Básica</option>
             <option value="1" data-name="Chocolate" selected>Chocolate</option>
@@ -67,7 +75,8 @@
             <option value="1" data-name="DR">DR</option>
         </select>
 
-        <label class="text-[10px] font-bold uppercase ml-1 text-gray-400">Topping Final (+$1)</label>
+        <!-- Topping -->
+        <label class="text-[10px] font-bold uppercase ml-1 text-gray-500">Topping Final (+$1)</label>
         <select id="topping" onchange="actualizar()">
             <option value="1" data-name="Lluvia Choc. Blanco" selected>Lluvia Choc. Blanco</option>
             <option value="0" data-name="Ninguno">Sin Topping</option>
@@ -76,12 +85,13 @@
             <option value="1" data-name="Lluvia Choc. Negro">Lluvia Choc. Negro</option>
         </select>
 
-        <!-- Total con diseño mejorado -->
-        <div class="bg-orange-50 p-4 rounded-2xl border-2 border-orange-200 text-center my-6">
-            <p class="text-xs font-bold text-orange-600 uppercase tracking-widest">Total Estimado</p>
-            <span class="text-5xl font-black text-orange-700">$<span id="total">24</span></span>
+        <!-- Total Estimado -->
+        <div class="bg-orange-50 p-4 rounded-2xl border-2 border-orange-100 text-center my-6">
+            <p class="text-[10px] font-bold text-orange-400 uppercase tracking-widest">Total Estimado</p>
+            <span class="text-5xl font-black text-orange-600">$<span id="total">24</span></span>
         </div>
 
+        <!-- Botón de WhatsApp Directo -->
         <a id="btn-wa" href="https://wa.me" target="_self" class="btn-wa uppercase tracking-tighter">
             Confirmar por WhatsApp
         </a>
@@ -89,6 +99,7 @@
 
     <script>
         function actualizar() {
+            // Calcular Total
             const vTipo = parseFloat(document.getElementById('tipo').value);
             const vRelleno = parseFloat(document.getElementById('relleno').value);
             const vDeco = parseFloat(document.getElementById('decoracion').value);
@@ -96,16 +107,23 @@
             const suma = vTipo + vRelleno + vDeco + vTop;
             document.getElementById('total').innerText = suma;
 
+            // Cambiar Imagen (Respaldo visual)
             const img = document.getElementById('img-producto');
             img.src = (vTipo === 5) 
                 ? "https://images.unsplash.com" 
                 : "https://images.unsplash.com";
 
-            const getD = (id) => document.getElementById(id).options[document.getElementById(id).selectedIndex].dataset.name;
+            // Preparar Mensaje WhatsApp
+            const getD = (id) => {
+                const el = document.getElementById(id);
+                return el.options[el.selectedIndex].dataset.name;
+            };
+            
             const texto = encodeURIComponent(
                 `*NUEVO PEDIDO: MIS MELCOCHAS*\n` +
                 `🍰 *Tipo:* ${getD('tipo')}\n` +
                 `🧽 *Base:* ${getD('base')}\n` +
+                `🍫 *Sabor:* ${getD('sabor')}\n` +
                 `🍯 *Relleno:* ${getD('relleno')}\n` +
                 `✨ *Deco:* ${getD('decoracion')}\n` +
                 `🍒 *Topping:* ${getD('topping')}\n` +
@@ -115,9 +133,11 @@
             
             document.getElementById('btn-wa').href = "https://wa.me?text=" + texto;
         }
+        // Ejecutar cálculo inicial
         window.onload = actualizar;
     </script>
 </body>
 </html>
+
 
 
