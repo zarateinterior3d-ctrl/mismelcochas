@@ -10,46 +10,46 @@
         body { background-color: var(--crema); font-family: sans-serif; }
         .logo-color { color: var(--naranja); }
         .card { background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 450px; margin: auto; padding: 20px; }
-        select { width: 100%; border: 1px solid #ddd; padding: 10px; border-radius: 10px; background: white; margin-bottom: 12px; font-size: 15px; }
-        .btn-whatsapp { background-color: #25d366; color: white; text-align: center; display: block; padding: 16px; border-radius: 15px; font-weight: bold; text-decoration: none; font-size: 18px; cursor: pointer; border: none; width: 100%; }
+        select { width: 100%; border: 1px solid #ddd; padding: 12px; border-radius: 12px; margin-bottom: 12px; font-size: 16px; background: white; outline: none; }
+        .btn-wa { background-color: #25d366; color: white; text-align: center; display: block; padding: 18px; border-radius: 15px; font-weight: bold; text-decoration: none; font-size: 20px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
     </style>
 </head>
-<body class="p-4">
+<body class="p-4 pb-12">
 
     <div class="card">
-        <div class="text-center mb-4">
-            <h1 class="text-4xl font-black logo-color uppercase italic">Mis Melcochas</h1>
-            <p class="text-gray-500 text-[10px] uppercase tracking-widest font-bold">Personaliza tu pedido</p>
+        <!-- Logo Oficial Cargado -->
+        <div class="flex justify-center mb-4">
+            <img src="Logotipo.png" alt="Mis Melcochas" class="h-32 w-auto object-contain drop-shadow-md">
         </div>
 
-        <div class="mb-4 rounded-xl overflow-hidden h-48 bg-gray-200 border-2 border-orange-200">
+        <div class="text-center mb-6">
+            <p class="text-gray-500 text-[10px] uppercase tracking-[0.2em] font-black">Personaliza tu antojo</p>
+        </div>
+
+        <!-- Imagen Dinámica -->
+        <div class="mb-6 rounded-2xl overflow-hidden h-48 bg-gray-100 border-2 border-orange-200">
             <img id="img-producto" src="https://images.unsplash.com" class="w-full h-full object-cover">
         </div>
 
-        <div class="grid grid-cols-2 gap-2">
+        <!-- Menú Completo -->
+        <div class="grid grid-cols-2 gap-3">
             <div>
-                <label class="text-[10px] font-bold uppercase ml-1">Tipo</label>
+                <label class="text-[10px] font-bold uppercase ml-1 text-gray-400">Tipo de Pedido</label>
                 <select id="tipo" onchange="actualizar()">
                     <option value="5" data-name="Porción">Porción ($5)</option>
                     <option value="20" data-name="Torta" selected>Torta ($20)</option>
                 </select>
             </div>
             <div>
-                <label class="text-[10px] font-bold uppercase ml-1">Base</label>
+                <label class="text-[10px] font-bold uppercase ml-1 text-gray-400">Base</label>
                 <select id="base" onchange="actualizar()">
-                    <option value="0" data-name="Bizcocho">Bizcocho</option>
-                    <option value="0" data-name="Torta">Torta</option>
+                    <option data-name="Bizcocho">Bizcocho</option>
+                    <option data-name="Torta">Torta</option>
                 </select>
             </div>
         </div>
 
-        <label class="text-[10px] font-bold uppercase ml-1">Sabor del Bizcocho</label>
-        <select id="sabor" onchange="actualizar()">
-            <option value="0" data-name="Vainilla">Vainilla</option>
-            <option value="0" data-name="Chocolate">Chocolate</option>
-        </select>
-
-        <label class="text-[10px] font-bold uppercase ml-1">Relleno Interno (+$2)</label>
+        <label class="text-[10px] font-bold uppercase ml-1 text-gray-400">Relleno Interno (+$2)</label>
         <select id="relleno" onchange="actualizar()">
             <option value="0" data-name="Ninguno">Sin Relleno</option>
             <option value="2" data-name="Chocolate" selected>Chocolate</option>
@@ -59,35 +59,32 @@
             <option value="2" data-name="Fresa">Fresa</option>
         </select>
 
-        <label class="text-[10px] font-bold uppercase ml-1">Decoración (+$1)</label>
+        <label class="text-[10px] font-bold uppercase ml-1 text-gray-400">Decoración (+$1)</label>
         <select id="decoracion" onchange="actualizar()">
             <option value="0" data-name="Básica">Básica</option>
             <option value="1" data-name="Chocolate" selected>Chocolate</option>
             <option value="1" data-name="Arequipe">Arequipe</option>
-            <option value="1" data-name="Crema Pastelera">Crema Pastelera</option>
-            <option value="1" data-name="Shantylly">Shantylly</option>
             <option value="1" data-name="DR">DR</option>
         </select>
 
-        <label class="text-[10px] font-bold uppercase ml-1">Topping Final (+$1)</label>
+        <label class="text-[10px] font-bold uppercase ml-1 text-gray-400">Topping Final (+$1)</label>
         <select id="topping" onchange="actualizar()">
             <option value="1" data-name="Lluvia Choc. Blanco" selected>Lluvia Choc. Blanco</option>
             <option value="0" data-name="Ninguno">Sin Topping</option>
-            <option value="1" data-name="Arequipe">Arequipe</option>
-            <option value="1" data-name="Crema Pastelera">Crema Pastelera</option>
-            <option value="1" data-name="Lluvia Choc. Negro">Lluvia Choc. Negro</option>
             <option value="1" data-name="Coco">Coco</option>
             <option value="1" data-name="Fresa">Fresa</option>
+            <option value="1" data-name="Lluvia Choc. Negro">Lluvia Choc. Negro</option>
         </select>
 
-        <div class="bg-orange-100 p-4 rounded-xl border-2 border-orange-300 text-center my-4">
-            <span class="text-4xl font-black logo-color">$<span id="total">24</span></span>
+        <!-- Total con diseño mejorado -->
+        <div class="bg-orange-50 p-4 rounded-2xl border-2 border-orange-200 text-center my-6">
+            <p class="text-xs font-bold text-orange-600 uppercase tracking-widest">Total Estimado</p>
+            <span class="text-5xl font-black text-orange-700">$<span id="total">24</span></span>
         </div>
 
-        <!-- EL BOTÓN AHORA ES UNA FUNCIÓN QUE REDIRIGE LA VENTANA -->
-        <button onclick="enviarPedido()" class="btn-whatsapp">
-            PEDIR POR WHATSAPP
-        </button>
+        <a id="btn-wa" href="https://wa.me" target="_self" class="btn-wa uppercase tracking-tighter">
+            Confirmar por WhatsApp
+        </a>
     </div>
 
     <script>
@@ -96,29 +93,31 @@
             const vRelleno = parseFloat(document.getElementById('relleno').value);
             const vDeco = parseFloat(document.getElementById('decoracion').value);
             const vTop = parseFloat(document.getElementById('topping').value);
-            document.getElementById('total').innerText = vTipo + vRelleno + vDeco + vTop;
-        }
+            const suma = vTipo + vRelleno + vDeco + vTop;
+            document.getElementById('total').innerText = suma;
 
-        function enviarPedido() {
+            const img = document.getElementById('img-producto');
+            img.src = (vTipo === 5) 
+                ? "https://images.unsplash.com" 
+                : "https://images.unsplash.com";
+
             const getD = (id) => document.getElementById(id).options[document.getElementById(id).selectedIndex].dataset.name;
-            const total = document.getElementById('total').innerText;
-            
             const texto = encodeURIComponent(
                 `*NUEVO PEDIDO: MIS MELCOCHAS*\n` +
                 `🍰 *Tipo:* ${getD('tipo')}\n` +
                 `🧽 *Base:* ${getD('base')}\n` +
-                `🍫 *Sabor:* ${getD('sabor')}\n` +
                 `🍯 *Relleno:* ${getD('relleno')}\n` +
-                `✨ *Decoración:* ${getD('decoracion')}\n` +
+                `✨ *Deco:* ${getD('decoracion')}\n` +
                 `🍒 *Topping:* ${getD('topping')}\n` +
-                `*TOTAL: $${total}*`
+                `--------------------------\n` +
+                `*TOTAL: $${suma}*`
             );
-
-            // LA SOLUCIÓN TÉCNICA: No abrir ventana nueva, saltar directamente desde la actual
-            window.location.assign("https://wa.me" + texto);
+            
+            document.getElementById('btn-wa').href = "https://wa.me?text=" + texto;
         }
-
         window.onload = actualizar;
     </script>
 </body>
 </html>
+
+
